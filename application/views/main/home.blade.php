@@ -1,5 +1,72 @@
 @extends('main.template')
 @section('content')
+<!--rv-slider-->
+<section class="bannercontainer row">
+    <div class="rev_slider banner row m0" id="rev_slider" data-version="5.0">
+        <ul>
+            <li data-transition="slidehorizontal"  data-delay="10000">
+                <img src="{{base_url()}}assets/main/images/slider-img/b.jpeg"  alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" >
+                <div class="tp-caption sfr tp-resizeme carpenters-h1" 
+                    data-x="0" data-hoffset="690" 
+                    data-y="355" data-voffset="160" 
+                    data-whitespace="nowrap"
+                    data-start="900">
+                    we are available
+
+                </div>
+                <div class="tp-caption sfb tp-resizeme carpenters-p" 
+                    data-x="0" data-hoffset="500" 
+                    data-y="430" data-voffset="470" 
+                    data-whitespace="nowrap"
+                    data-start="1800">                    
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<br> do eiusmod tempor incididunt ut labore et dolore magna<br> aliqua. Ut enim ad minim veniam exercitation.
+                </div>
+            </li>
+            <li data-transition="slidehorizontal"  data-delay="10000">
+                <img src="{{base_url()}}assets/main/images/slider-img/a.jpg"  alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" >
+                <div class="tp-caption sfr tp-resizeme carpenters-h1" 
+                    data-x="0" data-hoffset="690" 
+                    data-y="355" data-voffset="160" 
+                    data-whitespace="nowrap"
+                    data-start="900">
+                    we are available
+
+                </div>
+                <div class="tp-caption sfb tp-resizeme carpenters-p" 
+                    data-x="0" data-hoffset="500" 
+                    data-y="430" data-voffset="470" 
+                    data-whitespace="nowrap"
+                    data-start="1800">                    
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<br> do eiusmod tempor incididunt ut labore et dolore magna<br> aliqua. Ut enim ad minim veniam exercitation.
+                </div>
+            </li>
+            
+            {{-- <li data-transition="parallaxvertical">
+                <img src="{{base_url()}}assets/main/images/slider-img/2.jpg"  alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" >
+                
+                <div class="tp-caption sfb tp-resizeme carpenters-ul type2" 
+                    data-x="left" data-hoffset="620" 
+                    data-y="255" data-voffset="470" 
+                    data-whitespace="nowrap"
+                    data-start="1500">
+                    <ul class="nav">
+                        <li><a href="{{base_url()}}assets/main/#">Domestic</a></li>
+                        <li><a href="{{base_url()}}assets/main/#">Commercial</a></li>
+                        <li><a href="{{base_url()}}assets/main/#">Industrial</a></li>
+                    </ul>
+                </div>
+                <div class="tp-caption sfr tp-resizeme carpenters-h1 type2" 
+                    data-x="left" data-hoffset="620" 
+                    data-y="320" data-voffset="160" 
+                    data-whitespace="nowrap"
+                    data-start="900">
+                    <span>Design</span> futniture<br><span>Make</span> doors
+                </div>
+            </li> --}}
+        </ul>
+    </div>
+</section>
+
 <section class="row experience-area">
    <div class="container">
        <div class="row">
@@ -73,7 +140,7 @@
 <section class="row latest_projects sectpad projects-1">
     <div class="container">
         <div class="row m0 section_header">
-            <h2>Our Latest Projects</h2>
+            <h2>Gallery</h2>
         </div>
         <div class="row m0 filter_row">
             <ul class="nav project_filter" id="project_filter2">
@@ -123,7 +190,7 @@
 </section>
 
 <!--work-shop-->
-<section class="row fluid-work-area">
+{{-- <section class="row fluid-work-area">
     <div class="work-image">
         <img src="{{base_url()}}assets/main/images/workshop/work.jpg" alt="">
     </div>
@@ -140,12 +207,12 @@
             </ul>
         </div>
     </div>
-</section>
+</section> --}}
 <!--testimonial-->
 <section class="row sectpad testimonial-area">
    <div class="container">
        <div class="row m0 section_header common">
-           <h2>Artikel Populer</h2> 
+           <h2>Testimonial</h2> 
         </div>
         <div class="testimonial-sliders">
             <div class="item">

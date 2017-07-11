@@ -175,45 +175,12 @@
                 </ul>
                 <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown active">
-                            <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{base_url()}}assets/main/index.html">Home Default</a></li>
-                                <li><a href="{{base_url()}}assets/main/landing-page.html">landing page</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{base_url()}}assets/main/about.html">Profil Desa</a></li>
-                        <li class="dropdown">
-                            <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artikel</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{base_url()}}assets/main/service.html">services</a></li>
-                                <li><a href="{{base_url()}}assets/main/services-2.html">services 2</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produk</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{base_url()}}assets/main/projects.html">projects</a></li>
-                                <li><a href="{{base_url()}}assets/main/projects2.html">projects 2</a></li>
-                                <li><a href="{{base_url()}}assets/main/projects-3.html">projects 3</a></li>
-                                <li><a href="{{base_url()}}assets/main/projects-details.html">projects details</a></li>
-                            </ul>
-                        </li>
-                         <li class="dropdown">
-                            <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Potensi</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{base_url()}}assets/main/testimonials.html">testimonial</a></li>
-                                <li><a href="{{base_url()}}assets/main/team.html">team</a></li>
-                                <li><a href="{{base_url()}}assets/main/faq.html">faq</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{base_url()}}assets/main/blog.html">blog</a></li>
-                                <li><a href="{{base_url()}}assets/main/blog-details.html">blog details</a></li>
-                            </ul>
-                        </li>
+                        <li class="{{match($menu,'home','active')}}"><a href="{{base_url()}}">Home</a></li>
+                        <li class="{{match($menu,'profil','active')}}"><a href="{{base_url('main/profil')}}">Profil Desa</a></li>
+                        <li class="{{match($menu,'artikel','active')}}"><a href="{{base_url('main/artikel')}}">Artikel</a></li>
+                        <li class="{{match($menu,'produk','active')}}"><a href="{{base_url('main/produk')}}">Produk</a></li>
+                         <li class="{{match($menu,'potensi','active')}}"><a href="{{base_url('main/potensi')}}">Potensi</a></li>
+                        <li class="{{match($menu,'gallery','active')}}"><a href="{{base_url('main/gallery')}}">Gallery</a></li>
                         {{-- <li class="dropdown">
                             <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu">
@@ -223,7 +190,7 @@
                                 <li><a href="{{base_url()}}assets/main/checkout.html">Checkout</a></li>
                             </ul>
                         </li> --}}
-                        <li><a href="{{base_url()}}assets/main/contact.html">contact us</a></li>
+                        <li class="{{match($menu,'contact','active')}}"><a href="{{base_url('main/contact')}}">Kontak</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
                         <li class="dropdown">
@@ -297,72 +264,7 @@
         </nav>
     </div>
 </header>
-<!--rv-slider-->
-<section class="bannercontainer row">
-    <div class="rev_slider banner row m0" id="rev_slider" data-version="5.0">
-        <ul>
-            <li data-transition="slidehorizontal"  data-delay="10000">
-                <img src="{{base_url()}}assets/main/images/slider-img/b.jpeg"  alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" >
-                <div class="tp-caption sfr tp-resizeme carpenters-h1" 
-                    data-x="0" data-hoffset="690" 
-                    data-y="355" data-voffset="160" 
-                    data-whitespace="nowrap"
-                    data-start="900">
-                    we are available
 
-                </div>
-                <div class="tp-caption sfb tp-resizeme carpenters-p" 
-                    data-x="0" data-hoffset="500" 
-                    data-y="430" data-voffset="470" 
-                    data-whitespace="nowrap"
-                    data-start="1800">                    
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<br> do eiusmod tempor incididunt ut labore et dolore magna<br> aliqua. Ut enim ad minim veniam exercitation.
-                </div>
-            </li>
-            <li data-transition="slidehorizontal"  data-delay="10000">
-                <img src="{{base_url()}}assets/main/images/slider-img/a.jpg"  alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" >
-                <div class="tp-caption sfr tp-resizeme carpenters-h1" 
-                    data-x="0" data-hoffset="690" 
-                    data-y="355" data-voffset="160" 
-                    data-whitespace="nowrap"
-                    data-start="900">
-                    we are available
-
-                </div>
-                <div class="tp-caption sfb tp-resizeme carpenters-p" 
-                    data-x="0" data-hoffset="500" 
-                    data-y="430" data-voffset="470" 
-                    data-whitespace="nowrap"
-                    data-start="1800">                    
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<br> do eiusmod tempor incididunt ut labore et dolore magna<br> aliqua. Ut enim ad minim veniam exercitation.
-                </div>
-            </li>
-            
-            {{-- <li data-transition="parallaxvertical">
-                <img src="{{base_url()}}assets/main/images/slider-img/2.jpg"  alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" >
-                
-                <div class="tp-caption sfb tp-resizeme carpenters-ul type2" 
-                    data-x="left" data-hoffset="620" 
-                    data-y="255" data-voffset="470" 
-                    data-whitespace="nowrap"
-                    data-start="1500">
-                    <ul class="nav">
-                        <li><a href="{{base_url()}}assets/main/#">Domestic</a></li>
-                        <li><a href="{{base_url()}}assets/main/#">Commercial</a></li>
-                        <li><a href="{{base_url()}}assets/main/#">Industrial</a></li>
-                    </ul>
-                </div>
-                <div class="tp-caption sfr tp-resizeme carpenters-h1 type2" 
-                    data-x="left" data-hoffset="620" 
-                    data-y="320" data-voffset="160" 
-                    data-whitespace="nowrap"
-                    data-start="900">
-                    <span>Design</span> futniture<br><span>Make</span> doors
-                </div>
-            </li> --}}
-        </ul>
-    </div>
-</section>
 
 <!--experiance-area-->
 @yield('content')
