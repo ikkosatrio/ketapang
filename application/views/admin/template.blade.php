@@ -296,7 +296,11 @@
 								<li class="{{match($menu,'produk','active')}}"><a href="{{base_url('superuser/produk')}}"><i class=" icon-box"></i> <span>Produk Desa</span></a></li>
 								<li class="{{match($menu,'potensi','active')}}"><a href="{{base_url('superuser/potensi')}}"><i class=" icon-loop"></i> <span>Potensi Desa</span></a></li>
 								<li class="{{match($menu,'gallery','active')}}"><a href="{{base_url('superuser/gallery')}}"><i class="icon-images3"></i> <span>Gallery Desa</span></a></li>
-								<li class="{{match($menu,'pesan','active')}}"><a href="{{base_url('superuser/pesan')}}"><i class=" icon-envelop3"></i> <span>Pesan</span></a></li>
+								<li class="{{match($menu,'pesan','active')}}"><a href="{{base_url('superuser/pesan')}}"><i class=" icon-envelop3"></i> <span>Pesan</span>
+								@if($npesan>=1)
+											<span class="badge badge-warning">{{$npesan}}</span>
+									@endif
+								</a></li>
 								<!-- /forms -->
 							</ul>
 						</div>

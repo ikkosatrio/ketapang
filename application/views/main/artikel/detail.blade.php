@@ -1,6 +1,13 @@
 @extends('main.template')
 @section('content')
 <!--breadcrumb-->
+<style type="text/css" media="screen">
+    .header-breadcrumb {
+        background: url({{img_header($header->artikel)}}) no-repeat scroll center 0 transparent;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+</style>
 <section class="row header-breadcrumb">
     <div class="container">
         <div class="row m0 page-cover">
@@ -125,9 +132,9 @@
                 <div class="sidebar row m0 ">
                     <div class="row widget widget-search">
                         <div class="row widget-inner">
-                            <form action="#" class="search-form" method="get">
+                            <form action="{{base_url('main/artikel/cari')}}" class="search-form" method="post">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Cari Artikel">
+                                    <input type="search" name="cari" class="form-control" placeholder="Cari Artikel">
                                     <span class="input-group-addon">
                                         <button type="submit"><i class="icon icon-Search"></i></button>
                                     </span>

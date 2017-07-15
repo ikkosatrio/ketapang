@@ -1,6 +1,16 @@
 @extends('main.template')
 @section('content')
 <!--breadcrumb-->
+<style type="text/css" media="screen">
+    .header-breadcrumb {
+        background: url({{img_header($header->kontak)}}) no-repeat scroll center 0 transparent;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+</style>
+@section('css')
+    <link href="{{base_url()}}assets/js/sweetalert.min.css" rel="stylesheet" type="text/css">
+@endsection
 <section class="row header-breadcrumb">
     <div class="container">
         <div class="row m0 page-cover">
@@ -65,10 +75,10 @@
                     </div>
                 </div>
                 <div class="col-md-8 input_form">
-                    <form action="contact_process.php" method="post" id="contactForm">
-                        <input type="text" class="form-control" id="yourname" name="yourname" placeholder="Nama">
-                        <input type="email" class="form-control" id="youremail" name="youremail" placeholder="Email">
-                        <textarea class="form-control" rows="6" id="message" name="message" placeholder="Pesan"></textarea>
+                    <form id="form-pesan" method="post">
+                        <input type="text" class="form-control" id="yourname" name="nama" placeholder="Nama">
+                        <input type="email" class="form-control" id="youremail" name="email" placeholder="Email">
+                        <textarea class="form-control" rows="6" id="message" name="pesan" placeholder="Pesan"></textarea>
                         <div class="row m0">
                             <button type="submit" class="btn btn-default submit">Kirim Pesan</button>
                         </div>
@@ -80,6 +90,50 @@
 </section>
 <!--MapBox-->
 <section class="map">
-    <div id="mapBox" class="row m0"><iframe style="width: 100%;height: 100%" src="https://www.google.com/maps/d/u/0/embed?mid=130hP436ho4XgPG8_Tv1FmKXD9y4"></iframe></div>
+    <div style="height: 425px;" class="row m0"><iframe style="width: 100%;height: 100%" src="https://www.google.com/maps/d/u/0/embed?mid=130hP436ho4XgPG8_Tv1FmKXD9y4"></iframe></div>
 </section>
+@section('js')
+<script type="text/javascript" src="{{base_url()}}assets/js/cak-js.js"></script>
+<script type="text/javascript" src="{{base_url()}}assets/js/sweetalert.min.js"></script>
+<script type="text/javascript" src="{{base_url()}}assets/js/plugins/loaders/blockui.min.js"></script>
+<script type="text/javascript">
+    $("#form-pesan").submit(function(e){
+            e.preventDefault();
+            $.ajax({
+            url:    "{{base_url('main/pesan')}}",
+            type:   "POST",
+            data: $("#form-pesan").serialize(),
+            beforeSend: function(){
+            blockMessage($('html'),'Please Wait Processing Data','#fff');   
+            }
+            })
+            .done(function(data){
+            $('html').unblock();
+            sweetAlert({
+            title:  ((data.auth==false) ? "Opps!" : 'Pesan Success !'),
+            text:   ((data.auth==false) ? data.msg : 'Pesan anda Telah Dikirim'),
+            type:   ((data.auth==false) ? "error" : "success"),
+            },
+            function(){
+            if(data.auth!=false){
+            redirect("{{base_url('main/contact')}}");    
+            return;
+            }}
+            );
+            
+            })
+            .fail(function() {
+            $('html').unblock();
+            sweetAlert({
+            title:  "Opss!",
+            text:   "Something Wrong!, Try Again later",
+            type:   "error",
+            },
+            function(){
+            // grecaptcha.reset();
+            });
+            })
+            })
+</script>
+@endsection
 @endsection

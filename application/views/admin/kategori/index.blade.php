@@ -63,7 +63,7 @@ Dashboard - Administrasi
 			                        </td>
 			                        <td class="text-center">
 			                        	<span class="text-size-small text-muted">
-			                        		{{read_more(strip_tags($result->deskripsi),130)}}
+			                        		{{read_more(strip_tags($result->deskripsi_kat),130)}}
 			                        	</span>
 			                        </td>
 			                        <td class="text-center">

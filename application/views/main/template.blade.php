@@ -5,44 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="{{$config->meta_deskripsi}}">
+    <meta name="keywords" content="{{$config->meta_keyword}}">
+    <meta name="author" content="Pemerintah Desa Ketapang Kuning">
+    
     <title>{{ucfirst($menu)}} - {{$config->name}}</title>
     
     <!--Favicon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="{{base_url()}}assets/main/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{base_url()}}assets/main/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{base_url()}}assets/main/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{base_url()}}assets/main/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{base_url()}}assets/main/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{base_url()}}assets/main/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{base_url()}}assets/main/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{base_url()}}assets/main/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{base_url()}}assets/main/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{base_url()}}assets/main/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{base_url()}}assets/main/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{base_url()}}assets/main/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{base_url()}}assets/main/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
     <link rel="manifest" href="{{base_url()}}assets/main/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{{base_url()}}assets/images/website/config/logo/{{$config->logo}}">
     <meta name="theme-color" content="#ffffff">
     
     <!--Favicon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="{{base_url()}}assets/main/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{base_url()}}assets/main/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{base_url()}}assets/main/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{base_url()}}assets/main/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{base_url()}}assets/main/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{base_url()}}assets/main/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{base_url()}}assets/main/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{base_url()}}assets/main/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{base_url()}}assets/main/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{base_url()}}assets/main/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{base_url()}}assets/main/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{base_url()}}assets/main/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{base_url()}}assets/main/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}">
     <link rel="manifest" href="{{base_url()}}assets/main/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{{base_url()}}assets/images/website/config/logo/{{$config->logo}}">
     <meta name="theme-color" content="#ffffff">
 
    <!--    fonts-->
@@ -64,7 +68,7 @@
     <link href="{{base_url()}}assets/main/vendors/magnific/magnific-popup.css" rel="stylesheet">
     <!--    css-->
     <link rel="stylesheet" href="{{base_url()}}assets/main/css/style.css">
-    
+    @yield('css')
    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -72,6 +76,8 @@
       <script src="{{base_url()}}assets/main/https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="{{base_url()}}assets/main/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    
 </head>
 <body>
 <header class="row header navbar-static-top" id="main_navbar">
@@ -90,7 +96,7 @@
    <div class="logo_part">
         <div class="logo">
             <a href="{{base_url()}}assets/main/index.html" class="brand_logo">
-                <img src="{{base_url()}}assets/images/website/config/icon/{{$config->icon}}" style="height: 48px" alt="logo image">
+                <img src="{{base_url()}}assets/images/website/config/logo/{{$config->logo}}" style="height: 48px" alt="logo image">
             </a>
         </div>
     </div>
@@ -107,7 +113,7 @@
             
             <div class="menu row m0">                
                 <ul class="nav navbar-nav navbar-right visible-sm">
-                    <li class="dropdown">
+                    {{-- <li class="dropdown">
                         <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon icon-Search"></i></a>
                         <ul class="dropdown-menu">
                             <li>
@@ -116,7 +122,7 @@
                                 </form>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="dropdown">
                        {{--  <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <i class="icon icon-ShoppingCart"></i></a> --}}
@@ -193,7 +199,7 @@
                         <li class="{{match($menu,'contact','active')}}"><a href="{{base_url('main/contact')}}">Kontak</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
-                        <li class="dropdown">
+                        {{-- <li class="dropdown">
                             <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon icon-Search"></i></a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -202,7 +208,7 @@
                                     </form>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         {{-- <li class="dropdown">
                             <a href="{{base_url()}}assets/main/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="icon icon-ShoppingCart"></i></a>
@@ -290,8 +296,8 @@
         <div class="container">
             <div class="row footer-sidebar">
                 <div class="widget about-us-widget col-sm-6 col-lg-3">
-                    <a href="{{base_url()}}assets/main/index.html" class="brand_logo">
-                        <img src="{{base_url()}}assets/main/images/header/logo.png" alt="logo image">
+                    <a href="{{base_url()}}" class="brand_logo">
+                        <img src="{{base_url()}}assets/images/website/config/logo/{{$config->logo}}" alt="logo image">
                     </a>
                     <p>{!!$config->description!!}</p>
                     <div class="social-icon row m0">
@@ -351,9 +357,9 @@
                     <h4 class="widget_title">Kirim Saran & Kritik</h4>
                     <div class="widget-contact-list row m0">
                         <form class="submet-form row m0" action="#" method="post">
-                            <input type="text" class="form-control" id="name" placeholder="Name">
-                            <input type="email" class="form-control" id="email" placeholder="Email Address">
-                            <textarea class="form-control message" placeholder="Message"></textarea>
+                            <input type="text" class="form-control" id="name" placeholder="Nama">
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                            <textarea class="form-control message" placeholder="Pesan"></textarea>
                             <button class="submit" type="submit">Kirim Sekarang</button>
                         </form>
                        
@@ -366,10 +372,10 @@
          <div class="container">
             <div class="row">
                <div class="col-sm-8">
-                   Copyright &copy; <a href="{{base_url()}}assets/main/index.html">Ketapang Kuning</a> 2017. <br class="visible-xs"> All rights reserved.
+                   Copyright &copy; <a href="{{base_url()}}">Ketapang Kuning</a> 2017. <br class="visible-xs"> All rights reserved.
                </div>
                <div class="right col-sm-4">
-                   Created by: <a href="{{base_url()}}assets/main/http://themeforest.net/user/designarc">KKN 10 2017 - Universitas 17 Agustus 1945 Surabaya</a>
+                   Created by: <a href="http://untag-sby.ac.id/">KKN 10 2017 - Universitas 17 Agustus 1945 Surabaya</a>
                </div>
             </div>
         </div>
@@ -396,5 +402,6 @@
 <script src="{{base_url()}}assets/main/vendors/owlcarousel/owl.carousel.min.js"></script>
 <script src="{{base_url()}}assets/main/vendors/magnific/jquery.magnific-popup.min.js"></script>
 <script src="{{base_url()}}assets/main/js/theme.js"></script>
+@yield('js')
 </body>
 </html>

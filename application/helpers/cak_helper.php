@@ -282,6 +282,24 @@ if (!function_exists('img_slider')) {
 	}
 }
 
+if (!function_exists('img_pejabat')) {
+	function img_pejabat($img=null){
+		return base_url().'assets/images/pejabat/'.$img;
+	}
+}
+
+if (!function_exists('img_profil')) {
+	function img_profil($img=null){
+		return base_url().'assets/images/profil/'.$img;
+	}
+}
+
+if (!function_exists('img_header')) {
+	function img_header($img=null){
+		return base_url().'assets/images/header/'.$img;
+	}
+}
+
 
 if (!function_exists('notif_type')){
 	function notif_type($data,$type=null){

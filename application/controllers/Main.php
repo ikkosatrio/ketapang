@@ -7,16 +7,22 @@ class Main extends CI_Controller {
 		parent::__construct();
 
 		$this->blade->sebarno('ctrl', $this);
+		$this->load->model('m_profil');
 		$this->load->model('m_config');
+		$this->load->model('m_header');
 		$this->load->model('m_artikel');
 		$this->load->model('m_kategori');
 		$this->load->model('m_album');
 		$this->load->model('m_gambar');
 		$this->load->model('m_potensi');
 		$this->load->model('m_produk');
+		$this->load->model('m_pejabat');
 		$this->load->model('m_slider');
+		$this->load->model('m_pesan');
 
 		$this->data['config'] 			= $this->m_config->ambil('config',1)->row();
+		$this->data['profil'] 			= $this->m_profil->ambil('profil',1)->row();
+		$this->data['header'] 			= $this->m_header->ambil('header',1)->row();
 	}
 
 	public function index()
@@ -35,8 +41,9 @@ class Main extends CI_Controller {
 
 	public function profil()
 	{
-		$data         = $this->data;
-		$data['menu'] = "profil";
+		$data            = $this->data;
+		$data['menu']    = "profil";
+		$data['pejabat'] = $this->m_pejabat->tampil_dataPri('pejabat')->result();
 		echo $this->blade->nggambar('main.profil',$data);
 	}
 
@@ -56,7 +63,31 @@ class Main extends CI_Controller {
 		echo $this->blade->nggambar('main.contact',$data);
 	}
 
-	public function artikel($id=null)
+	public function pesan()
+	{
+		if ($this->input->is_ajax_request()) {
+			$nama           = $this->input->post('nama');
+			$email          = $this->input->post('email');
+			$pesan          = $this->input->post('pesan');
+
+			$data = array(
+				'nama'           => $nama,
+				'email'          => $email,
+				'pesan'          => $pesan,
+			);
+
+			if($this->m_pesan->input_data($data,'pesan')){
+				echo goResult(true,"Pesan Telah Dikirim");
+				return;
+			}
+
+		}else{
+			echo goResult(false,"no reques available");
+			return;
+		}
+	}
+
+	public function artikel($id=null,$kategori=null)
 	{
 		$data                = $this->data;
 		$data['menu']        = "artikel";
@@ -64,15 +95,26 @@ class Main extends CI_Controller {
 		$data['artikelPop']  = $this->m_artikel->tampil_dataPop('artikel')->result();
 		$data['kategori']    = $this->m_kategori->tampil_data('kategori')->result();
 
-		if ($id!=null) {
+		if ($id!=null && $kategori==null && !$this->input->post('cari', FALSE)) {
 			$data['menu']    = "detail";
 			$where           = array('id_artikel' => $id );
 			$data['artikel'] = $this->m_artikel->detail($where,'artikel')->row();
 			$view            = array('view' => $data['artikel']->view + 1);
 			$this->m_artikel->update_data($where,$view,'artikel');
 			echo $this->blade->nggambar('main.artikel.detail',$data);
-		}else{
-		echo $this->blade->nggambar('main.artikel.index',$data);
+		}else if ($id=='kategori'){
+			$data['menu']    = "kategori";
+			$where           = array('artikel.id_kategori' => $kategori );
+			$data['artikelBaru'] = $this->m_artikel->detail($where,'artikel')->result();
+			echo $this->blade->nggambar('main.artikel.index',$data);
+		}else if ($id=='cari'){
+			$data['menu']        = "cari";
+			$where               = array('judul' => $this->input->post('cari'));
+			$data['artikelBaru'] = $this->m_artikel->cari($where,'artikel')->result();
+			echo $this->blade->nggambar('main.artikel.index',$data);
+		}
+		else{
+			echo $this->blade->nggambar('main.artikel.index',$data);
 		}
 	}
 
@@ -83,7 +125,7 @@ class Main extends CI_Controller {
 		$data['produkBaru'] = $this->m_produk->tampil_dataBaru('produk')->result();
 		$data['produkPop']  = $this->m_produk->tampil_dataPop('produk')->result();
 		$data['produkRand'] = $this->m_produk->tampil_dataRand('produk')->result();
-		if ($id!=null) {
+		if ($id!=null && !$this->input->post('cari', FALSE)) {
 			$data['menu']   = "detail";
 			$where          = array('id_produk' => $id );
 			$data['produk'] = $this->m_produk->detail($where,'produk')->row();
@@ -91,7 +133,13 @@ class Main extends CI_Controller {
 			$this->m_produk->update_data($where,$view,'produk');
 
 			echo $this->blade->nggambar('main.produk.detail',$data);
-		}else{
+		}else if ($id=='cari'){
+			$data['menu']        = "cari";
+			$where               = array('judul' => $this->input->post('cari'));
+			$data['produkBaru'] = $this->m_produk->cari($where,'produk')->result();
+			echo $this->blade->nggambar('main.produk.index',$data);
+		}
+		else{
 			echo $this->blade->nggambar('main.produk.index',$data);
 		}
 	}

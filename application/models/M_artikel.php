@@ -37,6 +37,12 @@ class M_artikel extends CI_Model {
 		return $this->db->insert_id();
 	}
 	
+	function cari($where,$table){	
+		$this->db->join('kategori','kategori.id_kategori=artikel.id_kategori');
+		$this->db->like($where);
+		return $this->db->get($table);
+	}
+
 	function detail($where,$table){	
 		$this->db->join('kategori','kategori.id_kategori=artikel.id_kategori');
 		return $this->db->get_where($table,$where);

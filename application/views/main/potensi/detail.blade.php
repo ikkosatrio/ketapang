@@ -1,6 +1,13 @@
 @extends('main.template')
 @section('content')
 <!--breadcrumb-->
+<style type="text/css" media="screen">
+    .header-breadcrumb {
+        background: url({{img_header($header->potensi)}}) no-repeat scroll center 0 transparent;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+</style>
 <section class="row header-breadcrumb">
     <div class="container">
         <div class="row m0 page-cover">

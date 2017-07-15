@@ -45,6 +45,11 @@ class M_produk extends CI_Model {
 		return $this->db->get_where($table,$where);
 	}
 
+	function cari($where,$table){	
+		$this->db->like($where);
+		return $this->db->get($table);
+	}
+
 	function update_data($where,$data,$table){
 		$this->db->where($where);
 		$this->db->update($table,$data);

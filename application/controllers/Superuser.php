@@ -11,16 +11,23 @@ class Superuser extends CI_Controller {
 			redirect('auth');
 		}
 		$this->blade->sebarno('ctrl', $this);
+		$this->load->model('m_profil');
 		$this->load->model('m_config');
+		$this->load->model('m_header');
 		$this->load->model('m_artikel');
 		$this->load->model('m_kategori');
 		$this->load->model('m_album');
 		$this->load->model('m_gambar');
 		$this->load->model('m_potensi');
 		$this->load->model('m_produk');
+		$this->load->model('m_pejabat');
 		$this->load->model('m_slider');
+		$this->load->model('m_pesan');
 		$this->load->library('session');
+		$this->data['npesan']			=  $this->m_pesan->detail(array('status' => '0'),'pesan')->num_rows();
 		$this->data['config'] 			= $this->m_config->ambil('config',1)->row();
+		$this->data['profil'] 			= $this->m_profil->ambil('profil',1)->row();
+		$this->data['header'] 			= $this->m_header->ambil('header',1)->row();
 	}
 
 	public function index()
@@ -33,7 +40,7 @@ class Superuser extends CI_Controller {
 	// Start Config
 	public function config ($type=null){
 		$data         = $this->data;
-		$data         = $this->data;
+		// $data         = $this->data;
 		$data['menu'] = "config";
 
 		if ($this->input->is_ajax_request()) {
@@ -46,7 +53,7 @@ class Superuser extends CI_Controller {
 					$iconname 		= $data['config']->icon;
 
 					if (!empty($_FILES['logo']['name'])) {
-						$upload 	= $this->upload('./assets/images/website/config/logo/','logo');
+						$upload 	= $this->upload('./assets/images/website/config/logo/','logo','logo');
 
 						if($upload['auth']	== false){
 							echo goResult(false,$upload['msg']);
@@ -58,7 +65,7 @@ class Superuser extends CI_Controller {
 					}
 
 					if (!empty($_FILES['icon']['name'])) {
-						$upload 	= $this->upload('./assets/images/website/config/icon/','icon');
+						$upload 	= $this->upload('./assets/images/website/config/icon/','icon','icon');
 						if($upload['auth']	== false){
 							echo goResult(false,$upload['msg']);
 							return;
@@ -117,74 +124,175 @@ class Superuser extends CI_Controller {
 	}
 	// End Config
 	
+	// Start Profil
+	public function profil ($type=null){
+		$data         = $this->data;
+		// $data         = $this->data;
+		$data['menu'] = "profil";
+		$data['pejabat']  = $this->m_pejabat->tampil_data('pejabat')->result();
+		if ($this->input->is_ajax_request()) {
+			switch ($type) {
+
+				case 'update':			
+					$fotoname 		= $data['profil']->gambar;
+
+					if (!empty($_FILES['foto']['name'])) {
+						$upload 	= $this->upload('./assets/images/profil/','foto','profil');
+						if($upload['auth']	== false){
+							echo goResult(false,$upload['msg']);
+							return;
+						}
+
+						$fotoname 	= $upload['msg']['file_name'];
+						if(!empty($fotoname)){remFile(base_url().'assets/images/profil/'.$data['profil']->gambar);}
+					}
+					
+					$id             = 1;
+					$name           = $this->input->post('name');
+					$description    = $this->input->post('description');
+					
+					$data = array(
+						'nama_desa' => $name,
+						'deskripsi' => $description,
+						'gambar'    => $fotoname
+					);
+				 
+					$where = array(
+						'id_profil' => $id
+					);
+
+					if($this->m_profil->update_data($where,$data,'profil')){
+						echo goResult(true,"Data Telah Di Perbarui");
+						return;
+					}
+
+					break;
+				
+				default:
+					echo goResult(false,"Konfigurasi Telah Di Simpan");
+					return;
+					break;
+			}
+		   return;
+		}
+
+		echo $this->blade->nggambar('admin.profil.index',$data);
+		return;
+	}
+	// End Profil 
+	
 	// --------------------------------- Start Header
 	public function header ($type=null){
 		$data         = $this->data;
-		$data         = $this->data;
-		$data['menu'] = "config";
+		$data['menu'] = "header";
 
 		if ($this->input->is_ajax_request()) {
 
 			switch ($type) {
 
 				case 'update':					
+					$profilname  = $data['header']->profil;
+					$artikelname = $data['header']->artikel;
+					$produkname  = $data['header']->produk;
+					$potensiname = $data['header']->potensi;
+					$galleryname = $data['header']->gallery;
+					$kontakname  = $data['header']->kontak;
+					
+					$profil      = $data['header']->profil;
+					$artikel     = $data['header']->artikel;
+					$produk      = $data['header']->produk;
+					$potensi     = $data['header']->potensi;
+					$gallery     = $data['header']->gallery;
+					$kontak      = $data['header']->kontak;
 
-					$logoname 		= $data['config']->logo;
-					$iconname 		= $data['config']->icon;
-
-					if (!empty($_FILES['logo']['name'])) {
-						$upload 	= $this->upload('./assets/images/website/config/logo/','logo');
+					if (!empty($_FILES['profil']['name'])) {
+						$upload 	= $this->upload('./assets/images/header/','profil','profil');
 
 						if($upload['auth']	== false){
 							echo goResult(false,$upload['msg']);
 							return;
 						}
 
-						$logoname 	= $upload['msg']['file_name'];
-						if(!empty($logoname)){remFile(base_url().'assets/images/website/config/logo/'.$data['config']->logo);}
+						$profilname 	= $upload['msg']['file_name'];
+						if(!empty($profilname)){remFile('./assets/images/header/'.$data['header']->profil);}
 					}
 
-					if (!empty($_FILES['icon']['name'])) {
-						$upload 	= $this->upload('./assets/images/website/config/icon/','icon');
+					if (!empty($_FILES['artikel']['name'])) {
+						$upload 	= $this->upload('./assets/images/header/','artikel','artikel');
+
 						if($upload['auth']	== false){
 							echo goResult(false,$upload['msg']);
 							return;
 						}
 
-						$iconname 	= $upload['msg']['file_name'];
-						if(!empty($iconname)){remFile(base_url().'assets/images/website/config/icon/'.$data['config']->icon);}
+						$artikelname 	= $upload['msg']['file_name'];
+						if(!empty($artikelname)){remFile('./assets/images/header/'.$data['header']->artikel);}
+					}
+
+					if (!empty($_FILES['produk']['name'])) {
+						$upload 	= $this->upload('./assets/images/header/','produk','produk');
+
+						if($upload['auth']	== false){
+							echo goResult(false,$upload['msg']);
+							return;
+						}
+
+						$produkname 	= $upload['msg']['file_name'];
+						if(!empty($produkname)){remFile('./assets/images/header/'.$data['header']->produk);}
+					}
+
+					if (!empty($_FILES['potensi']['name'])) {
+						$upload 	= $this->upload('./assets/images/header/','potensi','potensi');
+
+						if($upload['auth']	== false){
+							echo goResult(false,$upload['msg']);
+							return;
+						}
+
+						$potensiname 	= $upload['msg']['file_name'];
+						if(!empty($potensiname)){remFile('./assets/images/header/'.$data['header']->potensi);}
+					}
+
+					if (!empty($_FILES['gallery']['name'])) {
+						$upload 	= $this->upload('./assets/images/header/','gallery','gallery');
+
+						if($upload['auth']	== false){
+							echo goResult(false,$upload['msg']);
+							return;
+						}
+
+						$galleryname 	= $upload['msg']['file_name'];
+						if(!empty($galleryname)){remFile('./assets/images/header/'.$data['header']->gallery);}
+					}
+
+					if (!empty($_FILES['kontak']['name'])) {
+						$upload 	= $this->upload('./assets/images/header/','kontak','kontak');
+
+						if($upload['auth']	== false){
+							echo goResult(false,$upload['msg']);
+							return;
+						}
+
+						$kontakname 	= $upload['msg']['file_name'];
+						if(!empty($kontakname)){remFile('./assets/images/header/'.$data['header']->kontak);}
 					}
 					
 					$id             = 1;
-					$name           = $this->input->post('name');
-					$email          = $this->input->post('email');
-					$phone          = $this->input->post('phone');
-					$facebook       = $this->input->post('facebook');
-					$instagram      = $this->input->post('instagram');
-					$address        = $this->input->post('address');
-					$description    = $this->input->post('description');
-					$meta_deskripsi = $this->input->post('meta_deskripsi');
-					$meta_keyword   = $this->input->post('meta_keyword');
-					
+
 					$data = array(
-						'name'           => $name,
-						'email'          => $email,
-						'phone'          => $phone,
-						'facebook'       => $facebook,
-						'instagram'      => $instagram,
-						'address'        => $address,
-						'description'    => $description,
-						'icon'           => $iconname,
-						'logo'           => $logoname,
-						'meta_deskripsi' => $meta_deskripsi,
-						'meta_keyword'   => $meta_keyword
+						'profil'  => $profilname,
+						'artikel' => $artikelname,
+						'produk'  => $produkname,
+						'potensi' => $potensiname,
+						'gallery' => $galleryname,
+						'kontak'  => $kontakname
 					);
 				 
 					$where = array(
-						'id' => $id
+						'id_header' => $id
 					);
 
-					if($this->m_config->update_data($where,$data,'config')){
+					if($this->m_header->update_data($where,$data,'header')){
 						echo goResult(true,"Data Telah Di Perbarui");
 						return;
 					}
@@ -204,6 +312,123 @@ class Superuser extends CI_Controller {
 	}
 	// --------------------------------- END Header
 
+	// --------------------------------- Start Pesan
+	public function pesan($url=null,$id=null){
+		$data             = $this->data;
+		$data['menu']     = "pesan";
+		$data['pesan']  = $this->m_pesan->tampil_data('pesan')->result();
+		if ($url=="detail") {
+			$data['type']  = "update";
+			$where         = array('id_pesan' => $id);
+			$status		   = array('status' => '1');
+			$this->m_pesan->update_data($where,$status,'pesan');
+			$data['pesan'] = $this->m_pesan->detail($where,'pesan')->row();
+			echo $this->blade->nggambar('admin.pesan.content',$data);
+		}else if ($url=="deleted" && $id != null) {
+			$where           = array('id_pesan' => $id);
+			if ($this->m_pesan->hapus_data($where,'pesan')) {
+			
+			}
+			redirect('superuser/pesan/');
+		}else{
+			echo $this->blade->nggambar('admin.pesan.index',$data);	
+			return;
+		}
+	}
+	// --------------------------------- END Pesan
+
+	// --------------------------------- Start Pejabat
+	public function pejabat($url=null,$id=null){
+		$data             = $this->data;
+		$data['menu']     = "pejabat";
+		$data['pejabat']  = $this->m_pejabat->tampil_data('pejabat')->result();
+		if ($url=="create") {
+			$data['type']			= "create";
+			echo $this->blade->nggambar('admin.profil.content',$data);	
+			return;
+		}else if ($url == "created" && $this->input->is_ajax_request() == true) {
+			$nama      = $this->input->post('nama');
+			$jabatan   = $this->input->post('jabatan');
+			$cover     = time().$_FILES['foto']['name'];
+			$cover     = str_replace(' ', '_', $cover);
+			$prioritas = $this->input->post('prioritas');
+
+			if (!empty($_FILES['foto']['name'])) {
+					$upload 	= $this->upload('./assets/images/pejabat/','foto',$cover);
+					if($upload['auth']	== false){
+						echo goResult(false,$upload['msg']);
+						return;
+					}
+				}
+
+			$data = array(
+				'nama'      => $nama,
+				'jabatan'   => $jabatan,
+				'foto'      => $cover,
+				'prioritas' => $prioritas
+			);
+
+			if($this->m_pejabat->input_data($data,'pejabat')){
+				echo goResult(true,"Data Telah Di Tambahkan");
+				return;
+			}
+		}
+		else if ($url=="update" && $id!=null) {
+			$data['type']    = "update";
+			$where           = array('id_pejabat' => $id);
+			$data['pejabat'] = $this->m_pejabat->detail($where,'pejabat')->row();
+			echo $this->blade->nggambar('admin.profil.content',$data);
+		}
+		else if ($url=="updated" && $id!=null && $this->input->is_ajax_request() == true) {
+			$where           = array('id_pejabat' => $id);
+
+			$nama      = $this->input->post('nama');
+			$jabatan   = $this->input->post('jabatan');
+			$cover     = time().$_FILES['foto']['name'];
+			$cover     = str_replace(' ', '_', $cover);
+			$prioritas = $this->input->post('prioritas');
+
+			if (!empty($_FILES['foto']['name'])) {
+					$upload 	= $this->upload('./assets/images/pejabat/','foto',$cover);
+					if($upload['auth']	== false){
+						echo goResult(false,$upload['msg']);
+						return;
+					}
+					$data = array(
+						'nama'      => $nama,
+						'jabatan'   => $jabatan,
+						'foto'      => $cover,
+						'prioritas' => $prioritas
+					);
+				}else {
+					$data = array(
+						'nama'      => $nama,
+						'jabatan'   => $jabatan,
+						'prioritas' => $prioritas
+					);
+				}
+
+			
+
+			if($this->m_pejabat->update_data($where,$data,'pejabat')){
+				echo goResult(true,"Data Telah Di Tambahkan");
+				return;
+			}
+
+		}
+		else if ($url=="deleted" && $id != null) {
+			$where           = array('id_pejabat' => $id);
+			if ($this->m_pejabat->hapus_data($where,'pejabat')) {
+			
+			}
+			redirect('superuser/pejabat/');
+		}else{
+			echo $this->blade->nggambar('admin.profil.index',$data);	
+			return;
+		}
+	}
+	// --------------------------------- End Pejabat
+	
 	// --------------------------------- Start Artikel
 	public function artikel($url=null,$id=null)
 	{	

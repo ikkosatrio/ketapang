@@ -55,20 +55,13 @@
    <div class="container">
        <div class="row">
            <div class="col-sm-5 worker-image">
-               <img src="{{base_url()}}assets/main/images/expreence/1.png" alt="">
+               <img style="max-width: 436px;max-height: 466px;min-height: 466px" src="{{img_profil($profil->gambar)}}" alt="{{$profil->nama_desa}}">
            </div>
            <div class="col-sm-7 experience-info">
               <div class="content">
-                  <h2>OVER 15 YEARS EXPERIENCE IN INDUSTRY</h2> 
-                  <p>Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion consectetur elit. Vesti bulum nec.</p>  
+                  <h2>{{$profil->nama_desa}}</h2> 
+                  <p>{!!$profil->deskripsi!!}</p>  
               </div>
-              <ul class="content-list">
-                  <li><a href="{{base_url()}}assets/main/#">Interior Furniture Manfacturing</a></li>
-                  <li><a href="{{base_url()}}assets/main/#">Reparing of wooden almerah</a></li>
-                  <li><a href="{{base_url()}}assets/main/#">Hardwood Flooring</a></li>
-                  <li><a href="{{base_url()}}assets/main/#">Renovaion of office furnitures</a></li>
-                  <li><a href="{{base_url()}}assets/main/#">Make Quality Products</a></li>
-              </ul>
               {{-- <div class="content-image">
               <img src="{{base_url()}}assets/main/images/expreence/2.jpg" alt="">
               </div> --}}

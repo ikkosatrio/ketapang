@@ -1,6 +1,22 @@
 @extends('main.template')
 @section('content')
 <!--breadcrumb-->
+@section('css')
+<style type="text/css" media="screen">
+    .header-breadcrumb {
+        background: url({{img_header($header->profil)}}) no-repeat scroll center 0 transparent;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    .who-area {
+        background: url('') no-repeat scroll center 0 transparent;
+        position: relative!important;
+    }
+    .who-area .who-are-image:after{
+             border: 0px solid #fff; 
+    }
+</style>
+@endsection
 <section class="row header-breadcrumb">
     <div class="container">
             <div class="row m0 page-cover">
@@ -22,13 +38,13 @@
         <div class="row">
             <div class="col-sm-4 col-lg-3 who-are">
                 <div class="who-are-image row m0">
-                    <img src="{{base_url()}}assets/main/images/who-area/1.jpg" alt="">
+                    <img src="{{img_profil($profil->gambar)}}" alt="{{$profil->nama_desa}}">
                 </div>
             </div>
             <div class="col-sm-8 col-lg-9 who-are-texts">
                 <div class="who-text">
-                    <h3>Ketapang Kuning</h3>
-                    <p>accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto.  Iinventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto.ntore veritatis et quasi archit. quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore.</p>
+                    <h3>{{$profil->nama_desa}}</h3>
+                    <p>{!!$profil->deskripsi!!}</p>
                 </div>
             </div>
         </div>
@@ -43,21 +59,17 @@
             <h2>Aparatur Desa</h2> 
         </div>
         <div class="row our-team">
+            @foreach ($pejabat as $result)
             <div class="col-sm-6 col-md-3 team">
                 <div class="team-images row m0">
-                    <img src="{{base_url()}}assets/main/images/team/1.png" alt="">
+                    <img style="max-width: 209px;max-height: 282px;min-height: 282px" src="{{img_pejabat($result->foto)}}" alt="">
                 </div>
-                {{-- <ul class="nav social-icons">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-                    <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul> --}}
                 <div class="team-content">
-                    <a href="#"><h4>Rock Leue</h4></a>
-                    <p>Furniture Carpenter</p>
+                    <a href="#"><h4>{{$result->nama}}</h4></a>
+                    <p>{{$result->jabatan}}</p>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>

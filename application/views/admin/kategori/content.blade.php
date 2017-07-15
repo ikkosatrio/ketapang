@@ -54,7 +54,7 @@ Dashboard - Administrasi
 							<div class="form-group">
 								<label class="col-lg-2 control-label">Deskripsi Kategori <span class="text-danger"><b>*</b></span></label>
 								<div class="col-lg-10">
-									<textarea rows="10" id="editor-full" cols="100" class="wysihtml5 wysihtml5-default2 form-control"  name="deskripsi" >{!! ($type=='create') ? '' : $kategori->deskripsi !!}</textarea>
+									<textarea rows="10" id="editor-full" cols="100" class="wysihtml5 wysihtml5-default2 form-control"  name="deskripsi" >{!! ($type=='create') ? '' : $kategori->deskripsi_kat !!}</textarea>
 								</div>
 							</div>
 						

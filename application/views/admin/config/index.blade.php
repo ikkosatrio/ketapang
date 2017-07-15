@@ -20,7 +20,7 @@
 					<div class="breadcrumb-line">
 						<ul class="breadcrumb">
 							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-							<li class="active"><a href="datatable_basic.html">Mapel</a></li>
+							<li class="active"><a href="datatable_basic.html">Config</a></li>
 						</ul>
 					</div>
 				</div>
@@ -33,7 +33,7 @@
 					<!-- Basic datatable -->
 					<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Data Mapel</h5>
+							<h5 class="panel-title">Data Configurasi Web</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
 			                		<li><a data-action="collapse"></a></li>

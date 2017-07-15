@@ -1,6 +1,13 @@
 @extends('main.template')
 @section('content')
 <!--breadcrumb-->
+<style type="text/css" media="screen">
+    .header-breadcrumb {
+        background: url({{img_header($header->artikel)}}) no-repeat scroll center 0 transparent;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+</style>
 <section class="row header-breadcrumb">
     <div class="container">
         <div class="row m0 page-cover">
@@ -26,7 +33,7 @@
                         <a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}"><img style="max-width: 770px;max-height: 330px;min-height: 330px" src="{{img_artikel($result->cover)}}" alt="" class="img-responsive"></a>                    
                     </div>
                     <div class="post-contents row m0">
-                        <a href="blog-details.html" class="post-date">{{$result->view}}<span>Dilihat</span></a>
+                        <a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}" class="post-date">{{$result->view}}<span>Dilihat</span></a>
                         <h4 class="post-title"><a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}">{{ucwords($result->judul)}}</a></h4>
                         <ul class="post-meta nav">
                             <li><i class="fa fa-user"></i>By: <a href="#">Admin</a></li>
@@ -34,7 +41,7 @@
                             <li><i class="fa fa-calendar"></i>Publish: <a href="#">{{tgl_indo($result->created_at)}}</a></li>
                         </ul>
                         <p>{{read_more($result->deskripsi,250)}}...</p>
-                        <a href="blog-details.html" class="read-more submit">read more</a>
+                        <a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}" class="read-more submit">read more</a>
                     </div>
                 </div>
                 @endforeach
@@ -48,9 +55,9 @@
                 <div class="sidebar row m0">
                     <div class="row widget widget-search">
                         <div class="row widget-inner">
-                            <form action="#" class="search-form" method="get">
+                            <form action="{{base_url('main/artikel/cari')}}" class="search-form" method="post">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Cari Artikel">
+                                    <input type="search" name="cari" class="form-control" placeholder="Cari Artikel">
                                     <span class="input-group-addon">
                                         <button type="submit"><i class="icon icon-Search"></i></button>
                                     </span>
@@ -63,7 +70,7 @@
                         <div class="row widget-inner">
                             <ul class="nav categories">
                                 @foreach ($kategori as $key => $result)
-                                    <li><a href="#"><i class="fa fa-angle-right"></i>{{$result->nama}}</a></li>
+                                    <li><a href="{{base_url('main/artikel/kategori/'.$result->id_kategori.'/'.seo($result->nama))}}"><i class="fa fa-angle-right"></i>{{$result->nama}}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -73,7 +80,7 @@
                         <div class="row widget-inner">
                         @foreach ($artikelPop as $key => $result)
                             <div class="media popular-post">
-                                <div class="media-left"><a href="single.html"><img style="max-width: 120px;max-height: 92px;min-height: 92px" src="{{img_artikel($result->cover)}}" alt=""></a></div>
+                                <div class="media-left"><a href="#"><img style="max-width: 120px;max-height: 92px;min-height: 92px" src="{{img_artikel($result->cover)}}" alt=""></a></div>
                                 <div class="media-body">
                                     <h5 class="post-title"><a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}">{{$result->judul}}</a></h5>
                                     <h5 class="post-date"><a href="#">{{tgl_indo($result->created_at)}}</a></h5>                            
