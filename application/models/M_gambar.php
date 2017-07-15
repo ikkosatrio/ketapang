@@ -16,6 +16,23 @@ class M_gambar extends CI_Model {
 		// return $this->db->get($table);
 	}
 
+	function tampil_dataBaru($table){
+		$this->db->from($table);
+		$this->db->join('album','album.id_album=gambar_album.id_album');
+		$this->db->order_by('created_at', 'RANDOM');
+		$this->db->limit(8);
+		return $query = $this->db->get();
+		// return $this->db->get($table);
+	}
+
+	function tampil_dataBaruAll($table){
+		$this->db->from($table);
+		$this->db->join('album','album.id_album=gambar_album.id_album');
+		$this->db->order_by('created_at', 'RANDOM');
+		return $query = $this->db->get();
+		// return $this->db->get($table);
+	}
+
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
 		return $this->db->insert_id();

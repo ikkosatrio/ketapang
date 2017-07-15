@@ -4,10 +4,10 @@
 <section class="row header-breadcrumb">
     <div class="container">
         <div class="row m0 page-cover">
-            <h2 class="page-cover-tittle">contact Us</h2>
+            <h2 class="page-cover-tittle">Kontak Kami</h2>
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">contact us</li>
+                <li><a href="#">Home</a></li>
+                <li class="active">Kontak Kami</li>
             </ol>
         </div>
     </div>
@@ -33,7 +33,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        Wood Workshop, 562, Mallin Street New Youk, NY 100 254
+                                       {{$config->address}}
                                     </div>
                                 </div>
                             </li>
@@ -45,8 +45,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        info@woodworkshopcom
-                                        support@woodworkshopcom
+                                        {{$config->email}}
                                     </div>
                                 </div>
                             </li>
@@ -58,8 +57,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        + 1800 562 2487<br>
-                                        + 3215 546 8975
+                                        {{$config->phone}}<br>
                                     </div>
                                 </div>
                             </li>
@@ -68,16 +66,13 @@
                 </div>
                 <div class="col-md-8 input_form">
                     <form action="contact_process.php" method="post" id="contactForm">
-                        <input type="text" class="form-control" id="yourname" name="yourname" placeholder="First">
+                        <input type="text" class="form-control" id="yourname" name="yourname" placeholder="Nama">
                         <input type="email" class="form-control" id="youremail" name="youremail" placeholder="Email">
-                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
-                        <textarea class="form-control" rows="6" id="message" name="message" placeholder="Message"></textarea>
+                        <textarea class="form-control" rows="6" id="message" name="message" placeholder="Pesan"></textarea>
                         <div class="row m0">
-                            <button type="submit" class="btn btn-default submit">Submit Now</button>
+                            <button type="submit" class="btn btn-default submit">Kirim Pesan</button>
                         </div>
                     </form>
-                    <div id="success"><p>Your message sent successfully.</p></div>
-                    <div id="error"><p>Something is wrong. Message cant be sent!</p></div>
                 </div>
             </div>           
         </div>
@@ -85,6 +80,6 @@
 </section>
 <!--MapBox-->
 <section class="map">
-    <div id="mapBox" class="row m0" data-lat="37.3818288" data-lon="-122.0636325" data-zoom="15"></div>
+    <div id="mapBox" class="row m0"><iframe style="width: 100%;height: 100%" src="https://www.google.com/maps/d/u/0/embed?mid=130hP436ho4XgPG8_Tv1FmKXD9y4"></iframe></div>
 </section>
 @endsection

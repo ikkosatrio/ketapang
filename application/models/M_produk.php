@@ -16,6 +16,27 @@ class M_produk extends CI_Model {
 		// return $this->db->get($table);
 	}
 
+	function tampil_dataBaru($table){
+		$this->db->from($table);
+		$this->db->order_by('created_at','desc');
+		return $query = $this->db->get();
+		// return $this->db->get($table);
+	}
+
+	function tampil_dataPop($table){
+		$this->db->from($table);
+		$this->db->order_by('view','desc');
+		return $query = $this->db->get();
+		// return $this->db->get($table);
+	}
+
+	function tampil_dataRand($table){
+		$this->db->from($table);
+		$this->db->order_by('id_produk','RANDOM');
+		return $query = $this->db->get();
+		// return $this->db->get($table);
+	}
+
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
 	}

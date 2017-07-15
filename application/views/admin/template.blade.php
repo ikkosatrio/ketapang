@@ -225,7 +225,7 @@
 						<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
 						<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
 						<li class="divider"></li> --}}
-						<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+						{{-- <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li> --}}
 						<li><a href="{{base_url()}}auth/keluar"><i class="icon-switch2"></i> Logout</a></li>
 					</ul>
 				</li>
@@ -279,11 +279,13 @@
 								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
 								<li class="{{match($menu,'dashboard','active')}}"><a href="{{base_url('superuser')}}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 								<li class="{{match($menu,'config','active')}}"><a href="{{base_url('superuser/config')}}"><i class="icon-gear"></i> <span>Configurasi Website</span></a></li>
-								<li class="{{match($menu,'profil','active')}}"><a href="{{base_url('superuser/profil')}}"><i class="icon-home5"></i> <span>Profil Desa</span></a></li>
+								<li class="{{match($menu,'slider','active')}}"><a href="{{base_url('superuser/slider')}}"><i class="icon-images2"></i> <span>Slider</span></a></li>
+								<li class="{{match($menu,'header','active')}}"><a href="{{base_url('superuser/header')}}"><i class="icon-home4"></i> <span>Header</span></a></li>
 								<!-- /main -->
 
 								<!-- Forms -->
 								<li class="navigation-header"><span>Manajemen Konten</span> <i class="icon-menu" title="Manajemen Mata Pelajaran"></i></li>
+								<li class="{{match($menu,'profil','active')}}"><a href="{{base_url('superuser/profil')}}"><i class="icon-home5"></i> <span>Profil Desa</span></a></li>
 								<li class="{{match($menu,'artikel','active')}}{{match($menu,'berita','active')}}">
 									<a href="#"><i class="icon-pencil3"></i> <span>Artikel</span></a>
 									<ul>

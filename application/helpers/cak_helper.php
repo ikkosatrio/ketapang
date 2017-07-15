@@ -276,6 +276,12 @@ if (!function_exists('img_produk')) {
 	}
 }
 
+if (!function_exists('img_slider')) {
+	function img_slider($img=null){
+		return base_url().'assets/images/slider/'.$img;
+	}
+}
+
 
 if (!function_exists('notif_type')){
 	function notif_type($data,$type=null){

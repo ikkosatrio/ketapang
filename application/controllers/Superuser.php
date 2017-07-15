@@ -18,6 +18,7 @@ class Superuser extends CI_Controller {
 		$this->load->model('m_gambar');
 		$this->load->model('m_potensi');
 		$this->load->model('m_produk');
+		$this->load->model('m_slider');
 		$this->load->library('session');
 		$this->data['config'] 			= $this->m_config->ambil('config',1)->row();
 	}
@@ -116,6 +117,92 @@ class Superuser extends CI_Controller {
 	}
 	// End Config
 	
+	// --------------------------------- Start Header
+	public function header ($type=null){
+		$data         = $this->data;
+		$data         = $this->data;
+		$data['menu'] = "config";
+
+		if ($this->input->is_ajax_request()) {
+
+			switch ($type) {
+
+				case 'update':					
+
+					$logoname 		= $data['config']->logo;
+					$iconname 		= $data['config']->icon;
+
+					if (!empty($_FILES['logo']['name'])) {
+						$upload 	= $this->upload('./assets/images/website/config/logo/','logo');
+
+						if($upload['auth']	== false){
+							echo goResult(false,$upload['msg']);
+							return;
+						}
+
+						$logoname 	= $upload['msg']['file_name'];
+						if(!empty($logoname)){remFile(base_url().'assets/images/website/config/logo/'.$data['config']->logo);}
+					}
+
+					if (!empty($_FILES['icon']['name'])) {
+						$upload 	= $this->upload('./assets/images/website/config/icon/','icon');
+						if($upload['auth']	== false){
+							echo goResult(false,$upload['msg']);
+							return;
+						}
+
+						$iconname 	= $upload['msg']['file_name'];
+						if(!empty($iconname)){remFile(base_url().'assets/images/website/config/icon/'.$data['config']->icon);}
+					}
+					
+					$id             = 1;
+					$name           = $this->input->post('name');
+					$email          = $this->input->post('email');
+					$phone          = $this->input->post('phone');
+					$facebook       = $this->input->post('facebook');
+					$instagram      = $this->input->post('instagram');
+					$address        = $this->input->post('address');
+					$description    = $this->input->post('description');
+					$meta_deskripsi = $this->input->post('meta_deskripsi');
+					$meta_keyword   = $this->input->post('meta_keyword');
+					
+					$data = array(
+						'name'           => $name,
+						'email'          => $email,
+						'phone'          => $phone,
+						'facebook'       => $facebook,
+						'instagram'      => $instagram,
+						'address'        => $address,
+						'description'    => $description,
+						'icon'           => $iconname,
+						'logo'           => $logoname,
+						'meta_deskripsi' => $meta_deskripsi,
+						'meta_keyword'   => $meta_keyword
+					);
+				 
+					$where = array(
+						'id' => $id
+					);
+
+					if($this->m_config->update_data($where,$data,'config')){
+						echo goResult(true,"Data Telah Di Perbarui");
+						return;
+					}
+
+					break;
+				
+				default:
+					echo goResult(false,"Konfigurasi Telah Di Simpan");
+					return;
+					break;
+			}
+		   return;
+		}
+
+		echo $this->blade->nggambar('admin.header.index',$data);
+		return;
+	}
+	// --------------------------------- END Header
 
 	// --------------------------------- Start Artikel
 	public function artikel($url=null,$id=null)
@@ -406,7 +493,101 @@ class Superuser extends CI_Controller {
 			return;
 		}
 	}
-	// --------------------------------- End Produk	
+	// --------------------------------- End Produk
+	
+
+	// --------------------------------- Start Slider
+	public function slider($url=null,$id=null)
+	{	
+		$data           = $this->data;
+		$data['menu']   = "slider";
+		$data['slider'] = $this->m_slider->tampil_data('slider')->result();
+
+		if ($url=="create") {
+			$data['type']			= "create";
+			echo $this->blade->nggambar('admin.slider.content',$data);	
+			return;
+		}
+		else if ($url == "created" && $this->input->is_ajax_request() == true) {
+			
+			$judul     	= $this->input->post('judul');
+			$deskripsi  = $this->input->post('deskripsi');
+			$cover 		= time().$_FILES['cover']['name'];
+			$cover 		= str_replace(' ', '_', $cover);
+
+			if (!empty($_FILES['cover']['name'])) {
+					$upload 	= $this->upload('./assets/images/slider/','cover',$cover);
+					if($upload['auth']	== false){
+						echo goResult(false,$upload['msg']);
+						return;
+					}
+				}
+
+			$data = array(
+				'judul'       => $judul,
+				'deskripsi'   => $deskripsi,
+				'cover'       => $cover,
+			);
+
+			if($this->m_slider->input_data($data,'slider')){
+				echo goResult(true,"Data Telah Di Tambahkan");
+				return;
+			}
+		}
+		else if ($url=="update" && $id!=null) {
+			$data['type']   = "update";
+			$where          = array('id_slider' => $id);
+			$data['slider'] = $this->m_slider->detail($where,'slider')->row();
+			echo $this->blade->nggambar('admin.slider.content',$data);
+		}
+		else if ($url=="updated" && $id!=null && $this->input->is_ajax_request() == true) {
+			$where           = array('id_slider' => $id);
+
+			$judul     	= $this->input->post('judul');
+			
+			$deskripsi  = $this->input->post('deskripsi');
+			$cover 		= time().$_FILES['cover']['name'];
+			$cover 		= str_replace(' ', '_', $cover);
+			
+
+			if (!empty($_FILES['cover']['name'])) {
+					$upload 	= $this->upload('./assets/images/slider/','cover',$cover);
+					if($upload['auth']	== false){
+						echo goResult(false,$upload['msg']);
+						return;
+					}
+					$data = array(
+						'judul'       => $judul,
+						'deskripsi'   => $deskripsi,
+						'cover'       => $cover,
+					);
+				}else{
+					$data = array(
+						'judul'       => $judul,
+						'deskripsi'   => $deskripsi,
+					);
+				}
+
+			if($this->m_slider->update_data($where,$data,'slider')){
+				echo goResult(true,"Data Telah Di Tambahkan");
+				return;
+			}
+		}
+		else if ($url=="deleted" && $id != null) {
+			$where           = array('id_sldier' => $id);
+			if ($this->m_slider->hapus_data($where,'slider')) {
+			
+			}
+			redirect('superuser/slider/');
+		}
+		else {
+			echo $this->blade->nggambar('admin.slider.index',$data);	
+			return;
+		}
+	}
+	// --------------------------------- End Slider
+
+			
 	// --------------------------------- Start KAtegori
 	public function kategori($url=null,$id=null)
 	{	

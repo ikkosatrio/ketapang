@@ -1,31 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class M_potensi extends CI_Model {
+class M_slider extends CI_Model {
 
 	public $variable;
-	
+
 	public function __construct()
 	{
 		parent::__construct();
+		
 	}
 
 	function tampil_data($table){
 		$this->db->from($table);
 		$this->db->order_by('created_at','desc');
-		return $query = $this->db->get();
-		// return $this->db->get($table);
-	}
-
-	function tampil_dataBaru($table){
-		$this->db->from($table);
-		$this->db->order_by('created_at','desc');
-		return $query = $this->db->get();
-		// return $this->db->get($table);
-	}
-
-	function tampil_dataPop($table){
-		$this->db->from($table);
-		$this->db->order_by('view','desc');
 		return $query = $this->db->get();
 		// return $this->db->get($table);
 	}
@@ -50,5 +37,5 @@ class M_potensi extends CI_Model {
 
 }
 
-/* End of file M_potensi.php */
-/* Location: ./application/controllers/M_potensi.php */
+/* End of file M_slider.php */
+/* Location: ./application/models/M_slider.php */

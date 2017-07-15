@@ -14,14 +14,22 @@ class Main extends CI_Controller {
 		$this->load->model('m_gambar');
 		$this->load->model('m_potensi');
 		$this->load->model('m_produk');
+		$this->load->model('m_slider');
 
 		$this->data['config'] 			= $this->m_config->ambil('config',1)->row();
 	}
 
 	public function index()
 	{
-		$data            = $this->data;
-		$data['menu']    = "home";
+		$data                = $this->data;
+		$data['artikelBaru'] = $this->m_artikel->tampil_dataBaru('artikel')->result();
+		$data['artikelPop']  = $this->m_artikel->tampil_dataPop('artikel')->result();
+		$data['produk']      = $this->m_produk->tampil_dataBaru('produk')->result();
+		$data['potensi']     = $this->m_produk->tampil_dataBaru('potensi')->result();
+		$data['gambar']      = $this->m_gambar->tampil_dataBaru('gambar_album')->result();
+		$data['album']       = $this->m_album->tampil_data('album')->result();
+		$data['slider']      = $this->m_slider->tampil_data('slider')->result();
+		$data['menu']        = "home";
 		echo $this->blade->nggambar('main.home',$data);
 	}
 
@@ -34,8 +42,10 @@ class Main extends CI_Controller {
 
 	public function gallery()
 	{
-		$data         = $this->data;
-		$data['menu'] = "gallery";
+		$data           = $this->data;
+		$data['menu']   = "gallery";
+		$data['gambar'] = $this->m_gambar->tampil_dataBaruAll('gambar_album')->result();
+		$data['album']  = $this->m_album->tampil_data('album')->result();
 		echo $this->blade->nggambar('main.gallery',$data);
 	}
 
@@ -48,35 +58,60 @@ class Main extends CI_Controller {
 
 	public function artikel($id=null)
 	{
-		$data         = $this->data;
-		$data['menu'] = "artikel";
+		$data                = $this->data;
+		$data['menu']        = "artikel";
+		$data['artikelBaru'] = $this->m_artikel->tampil_dataBaru('artikel')->result();
+		$data['artikelPop']  = $this->m_artikel->tampil_dataPop('artikel')->result();
+		$data['kategori']    = $this->m_kategori->tampil_data('kategori')->result();
+
 		if ($id!=null) {
-			$data['menu'] = "detail";
+			$data['menu']    = "detail";
+			$where           = array('id_artikel' => $id );
+			$data['artikel'] = $this->m_artikel->detail($where,'artikel')->row();
+			$view            = array('view' => $data['artikel']->view + 1);
+			$this->m_artikel->update_data($where,$view,'artikel');
 			echo $this->blade->nggambar('main.artikel.detail',$data);
-		}
+		}else{
 		echo $this->blade->nggambar('main.artikel.index',$data);
+		}
 	}
 
 	public function produk($id=null)
 	{
-		$data         = $this->data;
-		$data['menu'] = "produk";
+		$data               = $this->data;
+		$data['menu']       = "produk";
+		$data['produkBaru'] = $this->m_produk->tampil_dataBaru('produk')->result();
+		$data['produkPop']  = $this->m_produk->tampil_dataPop('produk')->result();
+		$data['produkRand'] = $this->m_produk->tampil_dataRand('produk')->result();
 		if ($id!=null) {
-			$data['menu'] = "detail";
+			$data['menu']   = "detail";
+			$where          = array('id_produk' => $id );
+			$data['produk'] = $this->m_produk->detail($where,'produk')->row();
+			$view           = array('view' => $data['produk']->view + 1);
+			$this->m_produk->update_data($where,$view,'produk');
+
 			echo $this->blade->nggambar('main.produk.detail',$data);
+		}else{
+			echo $this->blade->nggambar('main.produk.index',$data);
 		}
-		echo $this->blade->nggambar('main.produk.index',$data);
 	}
 
 	public function potensi($id=null)
 	{
-		$data         = $this->data;
-		$data['menu'] = "potensi";
+		$data               = $this->data;
+		$data['menu']       = "potensi";
+		$data['potensiBaru'] = $this->m_potensi->tampil_dataBaru('potensi')->result();
+		$data['potensiPop']  = $this->m_potensi->tampil_dataPop('potensi')->result();
 		if ($id!=null) {
-			$data['menu'] = "detail";
+			$data['menu']    = "detail";
+			$where           = array('id_potensi' => $id );
+			$data['potensi'] = $this->m_potensi->detail($where,'potensi')->row();
+			$view            = array('view' => $data['potensi']->view + 1);
+			$this->m_potensi->update_data($where,$view,'potensi');
 			echo $this->blade->nggambar('main.potensi.detail',$data);
+		}else {	
+			echo $this->blade->nggambar('main.potensi.index',$data);
 		}
-		echo $this->blade->nggambar('main.potensi.index',$data);
 	}
 
 	public function email($type){

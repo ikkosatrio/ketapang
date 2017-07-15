@@ -78,12 +78,12 @@
     <div class="container">
         <div class="row m0 social-info">
             <ul class="social-icon">
-                <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-facebook"></i></a></li>
+                {{-- <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-linkedin"></i></a></li>
-                <li class="tel"><a href="{{base_url()}}assets/main/tel:+1234567890"><i class="fa fa-phone"></i> + (123) 456 7890 </a></li>
-                <li class="email"><a href="{{base_url()}}assets/main/#"><i class="fa fa-envelope-o"></i> info@woodworkshop</a></li>
+                <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-linkedin"></i></a></li> --}}
+                <li class="tel"><a href="tel:{{$config->phone}}"><i class="fa fa-phone"></i> {{$config->phone}} </a></li>
+                <li class="email"><a href="mailto:{{$config->email}}"><i class="fa fa-envelope-o"></i> {{$config->email}}</a></li>
             </ul>
         </div>
     </div>
@@ -293,69 +293,68 @@
                     <a href="{{base_url()}}assets/main/index.html" class="brand_logo">
                         <img src="{{base_url()}}assets/main/images/header/logo.png" alt="logo image">
                     </a>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                    <p>{!!$config->description!!}</p>
                     <div class="social-icon row m0">
                         <ul class="nav">
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-linkedin-square"></i></a></li>
                             <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-facebook-square"></i></a></li>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-skype"></i></a></li>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-pinterest-square"></i></a></li>  
+                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="widget widget-links col-sm-6 col-lg-3">
-                    <h4 class="widget_title">our services</h4>
+                    <h4 class="widget_title">Menu</h4>
                     <div class="widget-contact-list row m0">
                         <ul>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-angle-right"></i>Interior Furniture</a></li>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-angle-right"></i>Hardwood Flooring</a></li>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-angle-right"></i>Renovation of Office Furniture</a></li>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-angle-right"></i>Repairing of Wood Roof</a></li>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-angle-right"></i>Outdoor Furniture</a></li>
+                            <li><a href="{{base_url()}}"><i class="fa fa-angle-right"></i>Home</a></li>
+                            <li><a href="{{base_url('main/profil')}}"><i class="fa fa-angle-right"></i>Profil Desa</a></li>
+                            <li><a href="{{base_url('main/artikel')}}"><i class="fa fa-angle-right"></i>Artikel</a></li>
+                            <li><a href="{{base_url('main/produk')}}"><i class="fa fa-angle-right"></i>Produk</a></li>
+                            <li><a href="{{base_url('main/potensi')}}"><i class="fa fa-angle-right"></i>Potensi</a></li>
+                            <li><a href="{{base_url('main/gallery')}}"><i class="fa fa-angle-right"></i>Gallery</a></li>
+                            <li><a href="{{base_url('main/contact')}}"><i class="fa fa-angle-right"></i>Kontak</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="widget widget-contact  col-sm-6 col-lg-3">
-                    <h4 class="widget_title">Get in Touch</h4>
+                    <h4 class="widget_title">Kontak</h4>
                     <div class="widget-contact-list row m0">
                        <ul>
                             <li>
                                 <i class="fa fa-map-marker"></i>
                                 <div class="fleft location_address">
-                                    Lorance 542B, Tailstoi Town 5248 MT, Wordwide Country
+                                    {{$config->address}}
                                 </div>
                                 
                             </li>
                             <li>
                                 <i class="fa fa-phone"></i>
                                 <div class="fleft contact_no">
-                                    <a href="{{base_url()}}assets/main/#">01865 524 8503</a>
+                                    <a href="tel:{{$config->phone}}">{{$config->phone}}</a>
                                 </div>
                             </li>
                             <li>
                                 <i class="fa fa-envelope-o"></i>
                                 <div class="fleft contact_mail">
-                                    <a href="{{base_url()}}assets/main/#">info@woodworkshop.com</a>
+                                    <a href="mailto:{{$config->email}}">{{$config->email}}</a>
                                 </div>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <i class="icon icon-WorldWide"></i>
                                 <div class="fleft service_time">
                                     Mon - Sat : 9am to 6pm Sunday Close
                                 </div>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
                 <div class="widget widget4 widget-form col-sm-6 col-lg-3">
-                    <h4 class="widget_title">Drop a message</h4>
+                    <h4 class="widget_title">Kirim Saran & Kritik</h4>
                     <div class="widget-contact-list row m0">
                         <form class="submet-form row m0" action="#" method="post">
                             <input type="text" class="form-control" id="name" placeholder="Name">
                             <input type="email" class="form-control" id="email" placeholder="Email Address">
                             <textarea class="form-control message" placeholder="Message"></textarea>
-                            <button class="submit" type="submit">submit now</button>
+                            <button class="submit" type="submit">Kirim Sekarang</button>
                         </form>
                        
                     </div>
@@ -367,10 +366,10 @@
          <div class="container">
             <div class="row">
                <div class="col-sm-8">
-                   Copyright &copy; <a href="{{base_url()}}assets/main/index.html">WoodWorkshop</a> 2016. <br class="visible-xs"> All rights reserved.
+                   Copyright &copy; <a href="{{base_url()}}assets/main/index.html">Ketapang Kuning</a> 2017. <br class="visible-xs"> All rights reserved.
                </div>
                <div class="right col-sm-4">
-                   Created by: <a href="{{base_url()}}assets/main/http://themeforest.net/user/designarc">DesignArc</a>
+                   Created by: <a href="{{base_url()}}assets/main/http://themeforest.net/user/designarc">KKN 10 2017 - Universitas 17 Agustus 1945 Surabaya</a>
                </div>
             </div>
         </div>

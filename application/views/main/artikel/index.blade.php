@@ -7,7 +7,7 @@
             <h2 class="page-cover-tittle">Artikel</h2>
             <ol class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li class="active">Blog V1</li>
+                <li class="active">Artikel</li>
             </ol>
         </div>
     </div>
@@ -20,54 +20,24 @@
         <div class="row sectpad">
             <div class="blog_section col-lg-8">
                 <!--Blog-->
+                @foreach ($artikelBaru as $result)
                 <div class="row blog">
                     <div class="featured_img row m0">
-                        <a href="{{base_url('main/artikel/1')}}"><img src="{{base_url()}}assets/main/images/blogs/1.jpg" alt="" class="img-responsive"></a>                    
+                        <a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}"><img style="max-width: 770px;max-height: 330px;min-height: 330px" src="{{img_artikel($result->cover)}}" alt="" class="img-responsive"></a>                    
                     </div>
                     <div class="post-contents row m0">
-                        <a href="blog-details.html" class="post-date">20<span>June</span></a>
-                        <h4 class="post-title"><a href="blog-details.html">Services that we offers </a></h4>
+                        <a href="blog-details.html" class="post-date">{{$result->view}}<span>Dilihat</span></a>
+                        <h4 class="post-title"><a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}">{{ucwords($result->judul)}}</a></h4>
                         <ul class="post-meta nav">
                             <li><i class="fa fa-user"></i>By: <a href="#">Admin</a></li>
-                            <li><i class="fa fa-tag"></i><a href="#">Exterior Furniture Tips</a></li>
-                            <li><i class="fa fa-comments"></i>Comments: <a href="#">8</a></li>
+                            <li><i class="fa fa-tag"></i><a href="#">{{$result->nama}}</a></li>
+                            <li><i class="fa fa-calendar"></i>Publish: <a href="#">{{tgl_indo($result->created_at)}}</a></li>
                         </ul>
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit.</p>
+                        <p>{{read_more($result->deskripsi,250)}}...</p>
                         <a href="blog-details.html" class="read-more submit">read more</a>
                     </div>
                 </div>
-                <div class="row blog">
-                    <div class="featured_img row m0">
-                        <a href="blog-details.html"><img src="{{base_url()}}assets/main/images/blogs/blog1.jpg" alt="" class="img-responsive"></a>                    
-                    </div>
-                    <div class="post-contents row m0">
-                        <a href="blog-details.html" class="post-date">20<span>June</span></a>
-                        <h4 class="post-title"><a href="blog-details.html">Services that we offers </a></h4>
-                        <ul class="post-meta nav">
-                            <li><i class="fa fa-user"></i>By: <a href="#">Admin</a></li>
-                            <li><i class="fa fa-tag"></i><a href="#">Exterior Furniture Tips</a></li>
-                            <li><i class="fa fa-comments"></i>Comments: <a href="#">8</a></li>
-                        </ul>
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit.</p>
-                        <a href="blog-details.html" class="read-more submit">read more</a>
-                    </div>
-                </div>
-                <div class="row blog">
-                    <div class="featured_img row m0">
-                        <a href="blog-details.html"><img src="{{base_url()}}assets/main/images/blogs/blog2.jpg" alt="" class="img-responsive"></a>                    
-                    </div>
-                    <div class="post-contents row m0">
-                        <a href="blog-details.html" class="post-date">20<span>June</span></a>
-                        <h4 class="post-title"><a href="blog-details.html">Services that we offers </a></h4>
-                        <ul class="post-meta nav">
-                            <li><i class="fa fa-user"></i>By: <a href="#">Admin</a></li>
-                            <li><i class="fa fa-tag"></i><a href="#">Exterior Furniture Tips</a></li>
-                            <li><i class="fa fa-comments"></i>Comments: <a href="#">8</a></li>
-                        </ul>
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit.</p>
-                        <a href="blog-details.html" class="read-more submit">read more</a>
-                    </div>
-                </div>
+                @endforeach
                 <ul class="pagination">
                     <li class="active"><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -80,7 +50,7 @@
                         <div class="row widget-inner">
                             <form action="#" class="search-form" method="get">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Enter Search keywords">
+                                    <input type="search" class="form-control" placeholder="Cari Artikel">
                                     <span class="input-group-addon">
                                         <button type="submit"><i class="icon icon-Search"></i></button>
                                     </span>
@@ -89,42 +59,30 @@
                         </div>
                     </div> <!--Search-->
                     <div class="row widget widget-categories">
-                        <h4 class="widget-title">Categories</h4>
+                        <h4 class="widget-title">Kategori</h4>
                         <div class="row widget-inner">
                             <ul class="nav categories">
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Interior Furniture Manfacturing</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Reparing of Wooden Almerah</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Hardwood Flooring</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Renovaion of office furnitures</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Make Quality Products</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Renovation of Kitchen</a></li>
+                                @foreach ($kategori as $key => $result)
+                                    <li><a href="#"><i class="fa fa-angle-right"></i>{{$result->nama}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div> <!--Categories-->
                     <div class="row widget widget-popular-posts">
-                        <h4 class="widget-title">popular posts</h4>
+                        <h4 class="widget-title">Artikel Populer</h4>
                         <div class="row widget-inner">
+                        @foreach ($artikelPop as $key => $result)
                             <div class="media popular-post">
-                                <div class="media-left"><a href="single.html"><img src="{{base_url()}}assets/main/images/blogs/post1.jpg" alt=""></a></div>
+                                <div class="media-left"><a href="single.html"><img style="max-width: 120px;max-height: 92px;min-height: 92px" src="{{img_artikel($result->cover)}}" alt=""></a></div>
                                 <div class="media-body">
-                                    <h5 class="post-title"><a href="blog-details.html">Neque porro quisua mest qui dolorem.</a></h5>
-                                    <h5 class="post-date"><a href="blog-details.html">20 june</a></h5>                            
+                                    <h5 class="post-title"><a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}">{{$result->judul}}</a></h5>
+                                    <h5 class="post-date"><a href="#">{{tgl_indo($result->created_at)}}</a></h5>                            
                                 </div>
                             </div> <!--Popular Post-->
-                            <div class="media popular-post">
-                                <div class="media-left"><a href="blog-details.html"><img src="{{base_url()}}assets/main/images/blogs/post2.jpg" alt=""></a></div>
-                                <div class="media-body">
-                                    <h5 class="post-title"><a href="blog-details.html">Neque porro quisua mest qui dolorem.</a></h5>
-                                    <h5 class="post-date"><a href="blog-details.html">20 june</a></h5>                            
-                                </div>
-                            </div> <!--Popular Post-->
-                            <div class="media popular-post">
-                                <div class="media-left"><a href="blog-details.html"><img src="{{base_url()}}assets/main/images/blogs/post3.jpg" alt=""></a></div>
-                                <div class="media-body">
-                                    <h5 class="post-title"><a href="blog-details.html">Neque porro quisua mest qui dolorem.</a></h5>
-                                    <h5 class="post-date"><a href="blog-details.html">20 june</a></h5>                            
-                                </div>
-                            </div> <!--Popular Post-->
+                        @if ($key==5)
+                            @break
+                        @endif
+                        @endforeach
                         </div>
                     </div> <!--Popular Posts-->
                     <div class="row widget text-widget-post">
@@ -133,7 +91,7 @@
                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant ium dolore que laudantium, totam rem aperiam, eaque ipsa quae ab illo inve ntore veritatis et quasi arc</p>
                         </div>
                     </div> <!--Tag Clouds-->
-                    <div class="row widget widget-tag-clouds">
+                    {{-- <div class="row widget widget-tag-clouds">
                         <h4 class="widget-title">tag clouds</h4>
                         <div class="row widget-inner clouds">
                             <a href="blog-details.html" class="widget-tag">Kitchen Renovation</a>
@@ -143,7 +101,7 @@
                             <a href="blog-details.html" class="widget-tag">Wood Supply</a>
                             <a href="blog-details.html" class="tag widget-tag">Flooring </a>
                         </div>
-                    </div> <!--Tag Clouds-->
+                    </div> --}} <!--Tag Clouds-->
                 </div>
             </div>
         </div>
