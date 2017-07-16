@@ -68,6 +68,7 @@
     <link href="{{base_url()}}assets/main/vendors/magnific/magnific-popup.css" rel="stylesheet">
     <!--    css-->
     <link rel="stylesheet" href="{{base_url()}}assets/main/css/style.css">
+    <link href="{{base_url()}}assets/js/sweetalert.min.css" rel="stylesheet" type="text/css">
     @yield('css')
    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -302,8 +303,8 @@
                     <p>{!!$config->description!!}</p>
                     <div class="social-icon row m0">
                         <ul class="nav">
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-facebook-square"></i></a></li>
-                            <li><a href="{{base_url()}}assets/main/#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="{{$config->facebook}}"><i class="fa fa-facebook-square"></i></a></li>
+                            <li><a href="{{$config->instagram}}"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -356,10 +357,10 @@
                 <div class="widget widget4 widget-form col-sm-6 col-lg-3">
                     <h4 class="widget_title">Kirim Saran & Kritik</h4>
                     <div class="widget-contact-list row m0">
-                        <form class="submet-form row m0" action="#" method="post">
-                            <input type="text" class="form-control" id="name" placeholder="Nama">
-                            <input type="email" class="form-control" id="email" placeholder="Email">
-                            <textarea class="form-control message" placeholder="Pesan"></textarea>
+                        <form class="submet-form row m0" id="form-pesan" method="post">
+                            <input type="text" class="form-control" id="name" name="nama" placeholder="Nama">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            <textarea class="form-control message" name="pesan" placeholder="Pesan"></textarea>
                             <button class="submit" type="submit">Kirim Sekarang</button>
                         </form>
                        
@@ -403,5 +404,47 @@
 <script src="{{base_url()}}assets/main/vendors/magnific/jquery.magnific-popup.min.js"></script>
 <script src="{{base_url()}}assets/main/js/theme.js"></script>
 @yield('js')
+<script type="text/javascript" src="{{base_url()}}assets/js/cak-js.js"></script>
+<script type="text/javascript" src="{{base_url()}}assets/js/sweetalert.min.js"></script>
+<script type="text/javascript" src="{{base_url()}}assets/js/plugins/loaders/blockui.min.js"></script>
+<script type="text/javascript">
+    $("#form-pesan").submit(function(e){
+            e.preventDefault();
+            $.ajax({
+            url:    "{{base_url('main/pesan')}}",
+            type:   "POST",
+            data: $("#form-pesan").serialize(),
+            beforeSend: function(){
+            blockMessage($('html'),'Please Wait Processing Data','#fff');   
+            }
+            })
+            .done(function(data){
+            $('html').unblock();
+            sweetAlert({
+            title:  ((data.auth==false) ? "Opps!" : 'Pesan Success !'),
+            text:   ((data.auth==false) ? data.msg : 'Pesan anda Telah Dikirim'),
+            type:   ((data.auth==false) ? "error" : "success"),
+            },
+            function(){
+            if(data.auth!=false){
+            redirect("{{base_url('main/contact')}}");    
+            return;
+            }}
+            );
+            
+            })
+            .fail(function() {
+            $('html').unblock();
+            sweetAlert({
+            title:  "Opss!",
+            text:   "Something Wrong!, Try Again later",
+            type:   "error",
+            },
+            function(){
+            // grecaptcha.reset();
+            });
+            })
+            })
+</script>
 </body>
 </html>

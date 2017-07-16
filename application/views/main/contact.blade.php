@@ -9,7 +9,7 @@
     }
 </style>
 @section('css')
-    <link href="{{base_url()}}assets/js/sweetalert.min.css" rel="stylesheet" type="text/css">
+    
 @endsection
 <section class="row header-breadcrumb">
     <div class="container">
@@ -93,47 +93,6 @@
     <div style="height: 425px;" class="row m0"><iframe style="width: 100%;height: 100%" src="https://www.google.com/maps/d/u/0/embed?mid=130hP436ho4XgPG8_Tv1FmKXD9y4"></iframe></div>
 </section>
 @section('js')
-<script type="text/javascript" src="{{base_url()}}assets/js/cak-js.js"></script>
-<script type="text/javascript" src="{{base_url()}}assets/js/sweetalert.min.js"></script>
-<script type="text/javascript" src="{{base_url()}}assets/js/plugins/loaders/blockui.min.js"></script>
-<script type="text/javascript">
-    $("#form-pesan").submit(function(e){
-            e.preventDefault();
-            $.ajax({
-            url:    "{{base_url('main/pesan')}}",
-            type:   "POST",
-            data: $("#form-pesan").serialize(),
-            beforeSend: function(){
-            blockMessage($('html'),'Please Wait Processing Data','#fff');   
-            }
-            })
-            .done(function(data){
-            $('html').unblock();
-            sweetAlert({
-            title:  ((data.auth==false) ? "Opps!" : 'Pesan Success !'),
-            text:   ((data.auth==false) ? data.msg : 'Pesan anda Telah Dikirim'),
-            type:   ((data.auth==false) ? "error" : "success"),
-            },
-            function(){
-            if(data.auth!=false){
-            redirect("{{base_url('main/contact')}}");    
-            return;
-            }}
-            );
-            
-            })
-            .fail(function() {
-            $('html').unblock();
-            sweetAlert({
-            title:  "Opss!",
-            text:   "Something Wrong!, Try Again later",
-            type:   "error",
-            },
-            function(){
-            // grecaptcha.reset();
-            });
-            })
-            })
-</script>
+
 @endsection
 @endsection

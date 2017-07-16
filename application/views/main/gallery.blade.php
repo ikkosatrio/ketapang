@@ -60,7 +60,7 @@
                             <li><a href="{{img_album($result->gambar)}}" data-source="#" title="{{$result->nama_album}}" data-desc="" class="popup"><i class="icon icon-Search"></i></a></li>
                         </ul>
                         <div class="row m0">
-                            <a href="projects-details.html"><h3>{{$result->nama_album}}</h3></a>
+                            <a href="#"><h3>{{$result->nama_album}}</h3></a>
                             {{-- <p>Wood Work of Racks</p> --}}
                         </div>
                     </div>

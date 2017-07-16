@@ -832,7 +832,7 @@ class Superuser extends CI_Controller {
 		
 			$data = array(
 				'nama'       => $nama,
-				'deskripsi'   => $deskripsi,
+				'deskripsi_kat'   => $deskripsi,
 			);
 
 			if($this->m_kategori->input_data($data,'kategori')){
@@ -854,7 +854,7 @@ class Superuser extends CI_Controller {
 		
 			$data = array(
 				'nama'       => $nama,
-				'deskripsi'   => $deskripsi,
+				'deskripsi_kat'   => $deskripsi,
 			);
 
 			if($this->m_kategori->update_data($where,$data,'kategori')){

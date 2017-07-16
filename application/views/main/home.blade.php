@@ -124,11 +124,10 @@
                     <img style="max-width: 285px;max-height: 260px;min-height: 260px" src="{{img_album($result->gambar)}}" alt="{{$result->nama_album}}">
                     <div class="project-text">
                         <ul class="list-unstyled">
-                            <li><a href="{{base_url()}}assets/main/projects-details.html"><i class="icon icon-Linked"></i></a></li>
-                            <li><a href="{{base_url()}}assets/main/images/latest-project/2.jpg" data-source="projects-details.html" title="KITCHKEN RENOVATION" data-desc="Wood Work of Rack" class="popup"><i class="icon icon-Search"></i></a></li>
+                            <li><a href="{{img_album($result->gambar)}}" data-source="#" title="{{$result->nama_album}}" data-desc="" class="popup"><i class="icon icon-Search"></i></a></li>
                         </ul>
                         <div class="row m0">
-                            <a href="{{base_url()}}assets/main/projects-details.html"><h3>{{$result->nama_album}}</h3></a>
+                            <a href="#"><h3>{{$result->nama_album}}</h3></a>
                             <p>{{tgl_indo($result->created_at)}}</p>
                         </div>
                     </div>
@@ -197,7 +196,7 @@
                     <a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}"><img style="max-width: 369px;max-height: 202px;min-height: 202px" src="{{img_artikel($result->cover)}}" alt="{{seo($result->judul)}}"></a>
                 </div>
                 <div class="latest-news-text">
-                    <a href="{{base_url()}}assets/main/blog.html">
+                    <a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}">
                         <h4>{{ucwords($result->judul)}}</h4>
                     </a>
                     <p>{{read_more($result->deskripsi,150)}}...</p>

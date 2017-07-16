@@ -95,7 +95,7 @@ class Main extends CI_Controller {
 		$data['artikelPop']  = $this->m_artikel->tampil_dataPop('artikel')->result();
 		$data['kategori']    = $this->m_kategori->tampil_data('kategori')->result();
 
-		if ($id!=null && $kategori==null && !$this->input->post('cari', FALSE)) {
+		if ($id!=null && $id!='kategori' && !$this->input->post('cari', FALSE)) {
 			$data['menu']    = "detail";
 			$where           = array('id_artikel' => $id );
 			$data['artikel'] = $this->m_artikel->detail($where,'artikel')->row();
