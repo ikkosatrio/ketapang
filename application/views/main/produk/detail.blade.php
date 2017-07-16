@@ -65,7 +65,7 @@
 
                 <div class="row best-seller">
                     <div class="row m0 section_header color">
-                        <h2>Related Product</h2> 
+                        <h2>Produk Terkait</h2> 
                     </div>
                 </div>
                 <br><br>
@@ -77,7 +77,7 @@
                         <div class="meta">
                             <h4>{{$result->judul}}</h4>
                             <span>Dilihat: <b>{{$result->view}}</b></span>
-                            <a href="cart-page.html">
+                            <a href="{{base_url('main/produk/'.$result->id_produk.'/'.seo($result->judul))}}">
                                 <div class="cart-button">
                                     <p>DETAIL PRODUK</p>
                                     <i class="fa fa-eye"></i>
@@ -112,10 +112,10 @@
                         <div class="row widget-inner">
                             @foreach ($produkPop as $result)
                             <div class="media popular-post">
-                                <div class="media-left"><a href="single.html"><img style="max-width: 120px;max-height: 92px;min-height: 92px" src="{{img_produk($result->cover)}}" alt=""></a></div>
+                                <div class="media-left"><a href="{{base_url('main/produk/'.$result->id_produk.'/'.seo($result->judul))}}"><img style="max-width: 120px;max-height: 92px;min-height: 92px" src="{{img_produk($result->cover)}}" alt=""></a></div>
                                 <div class="media-body">
-                                    <h5 class="post-title"><a href="blog-details.html">{{$result->judul}}</a></h5>
-                                    <h5 class="post-date"><a href="blog-details.html">{{tgl_indo($result->created_at)}}</a></h5>                            
+                                    <h5 class="post-title"><a href="{{base_url('main/produk/'.$result->id_produk.'/'.seo($result->judul))}}">{{$result->judul}}</a></h5>
+                                    <h5 class="post-date"><a href="{{base_url('main/produk/'.$result->id_produk.'/'.seo($result->judul))}}">{{tgl_indo($result->created_at)}}</a></h5>                            
                                 </div>
                             </div>
                             @endforeach

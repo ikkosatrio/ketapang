@@ -147,7 +147,7 @@
                         <div class="row widget-inner">
                             <ul class="nav categories">
                                 @foreach ($kategori as $key => $result)
-                                    <li><a href="#"><i class="fa fa-angle-right"></i>{{$result->nama}}</a></li>
+                                    <li><a href="{{base_url('main/artikel/kategori/'.$result->id_kategori.'/'.seo($result->nama))}}"><i class="fa fa-angle-right"></i>{{$result->nama}}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -157,10 +157,10 @@
                             @foreach ($artikelPop as $key => $result)
                         <div class="row widget-inner">
                                 <div class="media popular-post">
-                                    <div class="media-left"><a href="single.html"><img style="max-width: 120px;max-height: 92px;min-height: 92px" src="{{img_artikel($result->cover)}}" alt=""></a></div>
+                                    <div class="media-left"><a href="{{img_artikel($result->cover)}}"><img style="max-width: 120px;max-height: 92px;min-height: 92px" src="{{img_artikel($result->cover)}}" alt=""></a></div>
                                     <div class="media-body">
                                         <h5 class="post-title"><a href="{{base_url('main/artikel/'.$result->id_artikel.'/'.seo($result->judul))}}">{{$result->judul}}</a></h5>
-                                        <h5 class="post-date"><a href="blog-details.html">{{tgl_indo($result->created_at)}}</a></h5>                            
+                                        <h5 class="post-date"><a href="#">{{tgl_indo($result->created_at)}}</a></h5>                            
                                     </div>
                                 </div> <!--Popular Post-->
                         </div>

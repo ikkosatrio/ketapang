@@ -55,7 +55,7 @@
    <div class="container">
        <div class="row">
            <div class="col-sm-5 worker-image">
-               <img style="max-width: 436px;max-height: 466px;min-height: 466px" src="{{img_profil($profil->gambar)}}" alt="{{$profil->nama_desa}}">
+               <img style="max-width: 336px;max-height: 366px;min-height: 366px" src="{{img_profil($profil->gambar)}}" alt="{{$profil->nama_desa}}">
            </div>
            <div class="col-sm-7 experience-info">
               <div class="content">
@@ -201,7 +201,7 @@
                     </a>
                     <p>{{read_more($result->deskripsi,150)}}...</p>
                     <div class="row m0 latest-meta">
-                        <a href="{{base_url()}}assets/main/#"><i class="fa fa-user"></i>{{$result->nama}}</a> <a class="read_more" href="{{base_url()}}assets/main/single.html"><i class="fa fa-comments"></i> Dilihat: {{$result->view}}</a>
+                        <a href="{{base_url()}}assets/main/#"><i class="fa fa-tag"></i>{{$result->nama}}</a> <a class="read_more" href="{{base_url()}}assets/main/single.html"><i class="fa fa-eye"></i> Dilihat: {{$result->view}}</a>
                     </div>
                 </div>
             </div> 

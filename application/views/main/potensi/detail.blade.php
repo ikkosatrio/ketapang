@@ -68,7 +68,7 @@
                             <div class="media popular-post">
                                 <div class="media-left"><a href="#"><img style="max-width: 120px;max-height: 92px;min-height: 92px" src="{{img_potensi($result->cover)}}" alt=""></a></div>
                                 <div class="media-body">
-                                    <h5 class="post-title"><a href="single.html">{{$result->judul}}</a></h5>
+                                    <h5 class="post-title"><a href="{{base_url('main/potensi/'.$result->id_potensi.'/'.seo($result->judul))}}">{{$result->judul}}</a></h5>
                                     <h5 class="post-date"><a href="#">{{tgl_indo($result->created_at)}}</a></h5>                            
                                 </div>
                             </div> <!--Popular Post-->
