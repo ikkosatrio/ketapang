@@ -227,11 +227,11 @@
                    <a href="{{base_url('main/produk/'.$result->id_produk.'/'.seo($result->judul))}}"><img src="{{img_produk($result->cover)}}" alt="{{$result->judul}}"></a>
                 </div>
             </div>
-        </div>
-        @if ($key==5)
+        @if ($key==6)
             @break
         @endif
         @endforeach
+        </div>
     </div>
 </section>
 @endsection
