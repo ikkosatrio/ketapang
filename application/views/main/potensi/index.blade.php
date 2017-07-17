@@ -34,11 +34,11 @@
 <!-- Projects -->
 <section class="row latest_projects sectpad projects-3">
     <div class="container">
-        <div class="row m0 filter_row projects-menu">
+        {{-- <div class="row m0 filter_row projects-menu">
             <ul class="nav project_filter" id="project_filter2">
                 <li class="active" data-filter="*">all</li>
             </ul>
-        </div>
+        </div> --}}
         <div class="projects3 row m0" id="projects">
             <div class="grid-sizer"></div>
             @foreach ($potensiBaru as $result)

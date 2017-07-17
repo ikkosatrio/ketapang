@@ -43,9 +43,8 @@ Dashboard - Administrasi
 						<table class="table table-striped datatable-basic table-lg table-responsive">
 		                    <thead>
 		                        <tr>
-		                        	<th>No</th>
+		                        	<th style="width: 10%">No</th>
 		                            <th>Album</th>
-		                            <th>Deskripsi</th>
 		                            <th class="text-center">Aksi</th>
 		                        </tr>
 		                    </thead>
@@ -61,11 +60,11 @@ Dashboard - Administrasi
 			                        	Tanggal Publish : {{tgl_indo($result->created_at)}}
 			                        	</span><br>
 			                        </td>
-			                        <td class="text-center">
+			                        {{-- <td class="text-center">
 			                        	<a href="" data-popup="lightbox">
 					                        <img src="" alt="asd" class="img-rounded img-preview" style="object-fit: cover;height: 70px;">
 				                        </a>
-			                        </td>
+			                        </td> --}}
 			                        <td class="text-center">
 			                           <div class="btn-group">
 					                    	<button type="button" class="btn btn-danger btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown"><i class="icon-cog5 position-left"></i> Action <span class="caret"></span></button>

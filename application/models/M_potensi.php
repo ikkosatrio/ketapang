@@ -18,7 +18,7 @@ class M_potensi extends CI_Model {
 
 	function tampil_dataBaru($table){
 		$this->db->from($table);
-		$this->db->order_by('created_at','desc');
+		$this->db->order_by('id_potensi','desc');
 		return $query = $this->db->get();
 		// return $this->db->get($table);
 	}

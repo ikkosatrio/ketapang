@@ -427,7 +427,8 @@
             },
             function(){
             if(data.auth!=false){
-            redirect("{{base_url('main/contact')}}");    
+                // redirect("{{base_url('main/contact')}}");
+                $('#form-pesan').trigger("reset");    
             return;
             }}
             );

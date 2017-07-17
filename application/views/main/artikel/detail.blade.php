@@ -45,9 +45,9 @@
                 <div class="row m0 posts-social">
                     <div class="post-count">Share</div>
                     <ul class="nav social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a target="_blank" href="https://facebook.com/sharer/sharer.php?u={{base_url('main/artikel/'.$artikel->id_artikel.'/'.seo($artikel->judul))}}"><i class="fa fa-facebook"></i></a></li>
+                        <li><a target="_blank" href="https://twitter.com/share?url={{base_url('main/artikel/'.$artikel->id_artikel.'/'.seo($artikel->judul))}}"><i class="fa fa-twitter"></i></a></li>
+                        <li><a target="_blank" href="https://plus.google.com/share?url={{base_url('main/artikel/'.$artikel->id_artikel.'/'.seo($artikel->judul))}}"><i class="fa fa-google-plus"></i></a></li>
                     </ul>
                 </div>
                 {{-- <div class="row about-post-author">
